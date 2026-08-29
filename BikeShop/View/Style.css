@@ -1,0 +1,73 @@
+body
+{
+    font-family: Arial;
+    background-color: #f2f2f2;
+}
+
+
+h1
+{
+    text-align: center;
+}
+
+
+h2
+{
+    text-align: center;
+}
+
+
+table
+{
+    margin: 20px auto;
+    border-collapse: collapse;
+}
+
+
+th
+{
+    background-color: #333;
+    color: white;
+    padding: 10px;
+}
+
+
+td
+{
+    padding: 10px;
+}
+
+
+input
+{
+    padding: 7px;
+}
+
+
+#submit
+{
+    background-color: #333;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+}
+
+
+#submit:hover
+{
+    background-color: #555;
+}
+
+
+img
+{
+    width: 100px;
+    height: 80px;
+}
+
+
+.back
+{
+    text-align: center;
+    margin-top: 15px;
+}

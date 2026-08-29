@@ -1,0 +1,102 @@
+<?php
+
+$name = "";
+$brand = "";
+$model = "";
+$price = "";
+$quantity = "";
+$description = "";
+$message = "";
+$path = "";
+
+$valid = true;
+
+if($_SERVER["REQUEST_METHOD"] == "POST")
+{
+    $name = trim($_POST["bike_name"] ?? "");
+    $brand = trim($_POST["brand"] ??"");
+    $model = trim($_POST["model"] ??"");
+    $price = trim($_POST["price"] ??"");
+    $quantity = trim($_POST["quantity"] ??"");
+    $description = trim($_POST["description"] ??"");
+    $file = $_FILES["bike_image"] ?? [];
+
+    if(empty($name))
+        {
+            $message = "Bike name is required";
+            $valid = false;
+        }
+        
+    if(empty($brand))
+        {
+            $message = "Brand is required";
+            $valid = false;
+        }
+
+    if(empty($model))
+        {
+            $message = "Model is required";
+            $valid = false;
+        }
+
+    if(empty($price) || $price <= 0)
+        {
+            $message = "Price must be greater than 0";
+            $valid = false;
+        }
+
+    if(empty($quantity) || $quantity <= 0)
+        {
+            $message = "Quantity must be greater than 0";
+            $valid = false;
+        }
+
+    if(empty($description))
+        {
+            $message = "description is required";
+            $valid = false;
+        }
+
+    if(empty($file["name"]))
+        {
+            $message = "Please select a bike image";
+            $valid = false;
+        }
+
+
+        if($valid)
+            {
+                $uploaddirectory = "../Uploads/";
+                $path = $uploaddirectory.basename($file["name"]);
+                move_uploaded_file($file["tmp_name"], $path);
+            
+
+            $jsonfile = "../Model/bikes.json";
+
+            $bikes =[];
+
+            if(file_exists($jsonfile))
+                {
+                    $jsonData = file_get_contents($jsonfile);
+                    $bikes = json_decode($jsonData, true) ?? [];
+                }
+
+            $bikes[] = [
+                'id' => count($bikes)+1,
+                'name'=> $name,
+                'brand' => $brand,
+                'model' => $model,
+                'price'=> $price,
+                'quantity'=> $quantity,
+                'description'=> $description,
+                'image' => $path
+            ];
+
+            file_put_contents($jsonfile, json_encode($bikes, JSON_PRETTY_PRINT));
+
+            $message = 'Bike sold Successfully';
+        }
+
+}
+
+?>

@@ -1,0 +1,32 @@
+[
+    {
+        "id": 1,
+        "name": "yamaha v2",
+        "brand": "yamaha",
+        "model": "2025",
+        "price": "210000",
+        "quantity": "1",
+        "description": "double disk",
+        "image": "..\/Uploads\/yamaha-fzs-v2.webp"
+    },
+    {
+        "id": 2,
+        "name": "yamaha v3",
+        "brand": "yamaha",
+        "model": "2024",
+        "price": "220000",
+        "quantity": "2",
+        "description": "single channel abs, fi engine",
+        "image": "..\/Uploads\/yamaha-fzs-v3.webp"
+    },
+    {
+        "id": 3,
+        "name": "yamaha v4",
+        "brand": "yamaha",
+        "model": "2025",
+        "price": "270000",
+        "quantity": "1",
+        "description": "dual channel abs",
+        "image": "..\/Uploads\/yamaha-fzs-v4.webp"
+    }
+]

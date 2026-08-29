@@ -1,0 +1,443 @@
+:root {
+    --dark-charcoal: #252525;
+    --light-silver: #CFCFCF;
+    --medium-grey: #7D7D7D;
+    --dark-slate-grey: #545454;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: var(--light-silver);
+    color: var(--dark-charcoal);
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+/* ---------- Layout ---------- */
+
+.page-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+main {
+    padding: 30px 0 60px 0;
+}
+
+/* ---------- Navbar ---------- */
+
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background-color: var(--dark-charcoal);
+    border-bottom: 1px solid var(--dark-slate-grey);
+}
+
+.navbar-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 14px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.navbar-brand {
+    font-size: 20px;
+    font-weight: bold;
+    color: var(--light-silver);
+    letter-spacing: 0.5px;
+}
+
+.navbar-links {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.navbar-links a {
+    color: var(--light-silver);
+    font-size: 15px;
+    padding: 6px 4px;
+    border-bottom: 2px solid transparent;
+}
+
+.navbar-links a:hover {
+    border-bottom: 2px solid var(--medium-grey);
+}
+
+.navbar-user {
+    color: var(--medium-grey);
+    font-size: 14px;
+}
+
+/* ---------- Typography ---------- */
+
+h1 {
+    font-size: 26px;
+    font-weight: bold;
+    margin: 0 0 6px 0;
+    color: var(--dark-charcoal);
+}
+
+h2 {
+    font-size: 19px;
+    font-weight: bold;
+    margin: 0 0 14px 0;
+    color: var(--dark-charcoal);
+}
+
+p.subtitle {
+    color: var(--dark-slate-grey);
+    margin: 0 0 24px 0;
+}
+
+/* ---------- Cards / Sections ---------- */
+
+.card {
+    background-color: var(--light-silver);
+    border: 1px solid var(--medium-grey);
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.section {
+    margin-bottom: 40px;
+}
+
+/* ---------- Forms ---------- */
+
+form.form-box {
+    max-width: 420px;
+    background-color: var(--light-silver);
+    border: 1px solid var(--medium-grey);
+    padding: 24px;
+    margin: 0 auto;
+}
+
+.form-group {
+    margin-bottom: 16px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 6px;
+    color: var(--dark-charcoal);
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 9px 10px;
+    border: 1px solid var(--medium-grey);
+    background-color: var(--light-silver);
+    color: var(--dark-charcoal);
+    font-size: 14px;
+    font-family: inherit;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: 1px solid var(--dark-charcoal);
+}
+
+.btn {
+    display: inline-block;
+    background-color: var(--dark-charcoal);
+    color: var(--light-silver);
+    border: none;
+    padding: 10px 18px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: var(--dark-slate-grey);
+}
+
+.btn-secondary {
+    background-color: var(--medium-grey);
+}
+
+.btn-small {
+    padding: 5px 10px;
+    font-size: 13px;
+}
+
+.form-footer-text {
+    margin-top: 16px;
+    font-size: 14px;
+    text-align: center;
+    color: var(--dark-slate-grey);
+}
+
+/* ---------- Messages ---------- */
+
+.message {
+    max-width: 420px;
+    margin: 0 auto 18px auto;
+    padding: 10px 14px;
+    border: 1px solid var(--dark-slate-grey);
+    font-size: 14px;
+}
+
+.message.error {
+    color: var(--dark-charcoal);
+    border-color: var(--dark-charcoal);
+    font-weight: bold;
+}
+
+.message.success {
+    color: var(--dark-charcoal);
+    background-color: var(--light-silver);
+    border-color: var(--dark-slate-grey);
+}
+
+/* ---------- Search bar ---------- */
+
+.search-bar {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+}
+
+.search-bar input[type="text"] {
+    flex: 1;
+    min-width: 200px;
+    padding: 9px 10px;
+    border: 1px solid var(--medium-grey);
+    background-color: var(--light-silver);
+    font-size: 14px;
+}
+
+/* ---------- Bike grid ---------- */
+
+.bike-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+    gap: 20px;
+}
+
+.bike-card {
+    background-color: var(--light-silver);
+    border: 1px solid var(--medium-grey);
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+}
+
+.bike-card img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border: 1px solid var(--medium-grey);
+    margin-bottom: 10px;
+    background-color: var(--dark-slate-grey);
+}
+
+.bike-card h3 {
+    font-size: 16px;
+    margin: 0 0 4px 0;
+    color: var(--dark-charcoal);
+}
+
+.bike-card .bike-meta {
+    font-size: 13px;
+    color: var(--dark-slate-grey);
+    margin-bottom: 6px;
+}
+
+.bike-card .bike-price {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: var(--dark-charcoal);
+}
+
+.bike-card .stock-low {
+    color: var(--dark-charcoal);
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.bike-card .stock-out {
+    color: var(--dark-slate-grey);
+    font-size: 12px;
+    font-style: italic;
+}
+
+.empty-state {
+    color: var(--dark-slate-grey);
+    padding: 30px 0;
+    text-align: center;
+}
+
+/* ---------- Bike details ---------- */
+
+.bike-details {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.bike-details img {
+    width: 320px;
+    max-width: 100%;
+    height: 240px;
+    object-fit: cover;
+    border: 1px solid var(--medium-grey);
+    background-color: var(--dark-slate-grey);
+}
+
+.bike-details .bike-info {
+    flex: 1;
+    min-width: 250px;
+}
+
+.bike-details .bike-info .bike-price {
+    font-size: 22px;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.bike-details .bike-info .bike-meta {
+    color: var(--dark-slate-grey);
+    margin-bottom: 4px;
+}
+
+/* ---------- Cart table ---------- */
+
+table.cart-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 24px;
+}
+
+table.cart-table th {
+    background-color: var(--dark-charcoal);
+    color: var(--light-silver);
+    text-align: left;
+    padding: 10px;
+    font-size: 14px;
+}
+
+table.cart-table td {
+    padding: 10px;
+    border-bottom: 1px solid var(--medium-grey);
+    font-size: 14px;
+    vertical-align: middle;
+}
+
+table.cart-table img {
+    width: 70px;
+    height: 55px;
+    object-fit: cover;
+    border: 1px solid var(--medium-grey);
+}
+
+.qty-form {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.qty-form input[type="number"] {
+    width: 55px;
+    padding: 5px;
+    border: 1px solid var(--medium-grey);
+    background-color: var(--light-silver);
+}
+
+.cart-summary {
+    max-width: 320px;
+    margin-left: auto;
+    background-color: var(--light-silver);
+    border: 1px solid var(--medium-grey);
+    padding: 16px;
+}
+
+.cart-summary .row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+.cart-summary .row.total {
+    font-weight: bold;
+    font-size: 16px;
+    border-top: 1px solid var(--medium-grey);
+    padding-top: 8px;
+    margin-top: 8px;
+}
+
+/* ---------- Order history ---------- */
+
+table.order-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table.order-table th {
+    background-color: var(--dark-charcoal);
+    color: var(--light-silver);
+    text-align: left;
+    padding: 10px;
+    font-size: 14px;
+}
+
+table.order-table td {
+    padding: 10px;
+    border-bottom: 1px solid var(--medium-grey);
+    font-size: 14px;
+}
+
+.status-badge {
+    display: inline-block;
+    padding: 3px 8px;
+    font-size: 12px;
+    font-weight: bold;
+    background-color: var(--dark-slate-grey);
+    color: var(--light-silver);
+}
+
+.order-items-list {
+    margin-top: 8px;
+    padding-left: 18px;
+    color: var(--dark-slate-grey);
+    font-size: 13px;
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 600px) {
+    .bike-details img {
+        width: 100%;
+        height: 200px;
+    }
+
+    .cart-summary {
+        margin-left: 0;
+    }
+
+    table.cart-table, table.cart-table thead, table.cart-table tbody, table.cart-table th, table.cart-table td, table.cart-table tr {
+        font-size: 13px;
+    }
+}
