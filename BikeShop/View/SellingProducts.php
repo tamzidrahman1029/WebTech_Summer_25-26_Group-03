@@ -65,6 +65,14 @@ $result = $connection->query($sql);
                     Quantity
                 </th>
 
+                <th>
+                    Update
+                </th>
+
+                <th>
+                    Delete
+                </th>
+
             </tr>
 
 
@@ -120,6 +128,34 @@ $result = $connection->query($sql);
                                     <?php echo $bike["quantity"]; ?>
                                 </td>
 
+
+                                <td>
+
+                                    <a href="UpdateBike.php?id=<?php echo $bike["id"]; ?>">
+
+                                        <input
+                                            type="button"
+                                            value="UPDATE"
+                                        >
+
+                                    </a>
+
+                                </td>
+
+
+                                <td>
+
+                                    <a href="../Controller/SellerBikeController.php?id=<?php echo $bike["id"]; ?>">
+
+                                        <input
+                                            type="button"
+                                            value="DELETE"
+                                        >
+
+                                    </a>
+
+                                </td>
+
                             </tr>
 
 
@@ -136,7 +172,7 @@ $result = $connection->query($sql);
 
                     <tr>
 
-                        <td colspan="7">
+                        <td colspan="9">
                             No Selling Products Found
                         </td>
 
