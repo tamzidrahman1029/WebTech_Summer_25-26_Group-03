@@ -2,32 +2,6 @@
 
 include "../Controller/UpdateBikeController.php";
 
-//include "../Model/db.php";
-
-
-$id = $_GET["id"] ?? "";
-
-
-$database = new db();
-
-$connection = $database->connection();
-
-
-$sql = "SELECT * FROM bikes WHERE id = '".$id."'";
-
-$result = $connection->query($sql);
-
-
-if($result->num_rows > 0)
-{
-    $bike = $result->fetch_assoc();
-}
-else
-{
-    echo "Bike Not Found";
-    exit;
-}
-
 ?>
 
 
@@ -49,7 +23,13 @@ else
         <h1> Update Bike </h1>
 
 
-        <form method="post" enctype="multipart/form-data">
+        <form method="post" action="../Controller/UpdateBikeController.php" enctype="multipart/form-data">
+            <input
+                type="hidden"
+                name="id"
+                value="<?php echo $bike["id"]; ?>"
+            >
+
 
             <table>
 
@@ -118,11 +98,7 @@ else
 
                     <td>
 
-                        <input
-                            type="number"
-                            name="price"
-                            value="<?php echo $bike["price"]; ?>"
-                        >
+                        <input type="number" name="price" value="<?php echo $bike["price"]; ?>">
 
                     </td>
 

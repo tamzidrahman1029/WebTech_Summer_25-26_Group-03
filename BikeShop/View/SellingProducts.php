@@ -25,12 +25,16 @@ $result = $connection->query($sql);
 
         <link rel="stylesheet" href="style.css">
 
+        <script src="../JS/SearchBike.js"></script>
+
     </head>
 
 
     <body>
 
         <h1> Selling Products </h1>
+
+        <input type="text" id="search" onkeyup="SearchBike()" placeholder="Search Bike">
 
 
         <table border="1">

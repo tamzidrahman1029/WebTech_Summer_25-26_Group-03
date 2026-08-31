@@ -3,7 +3,7 @@
 include "../Model/db.php";
 
 
-$id = $_GET["id"] ?? "";
+$id = $_GET["id"] ?? $_POST["id"] ?? "";
 
 $name = "";
 $brand = "";
@@ -30,7 +30,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
         $price = trim($_POST["price"] ?? "");
         $quantity = trim($_POST["quantity"] ?? "");
         $description = trim($_POST["description"] ?? "");
-
 
         $valid = true;
 
@@ -104,8 +103,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
                         bike_image='".$path."'
                         WHERE id='".$id."'";
 
-
-                        $result = $connection->query($sql);
                     }
                 else
                     {
@@ -117,20 +114,39 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
                         quantity='".$quantity."',
                         description='".$description."'
                         WHERE id='".$id."'";
-
-
-                        $result = $connection->query($sql);
                     }
+
+
+                $result = $connection->query($sql);
 
 
                 if($result)
                     {
                         header("Location: ../View/SellingProducts.php");
+                        exit;
                     }
                 else
                     {
                         echo "Update Failed";
                     }
+            }
+
+    }
+else
+    {
+        $sql = "SELECT * FROM bikes WHERE id='".$id."'";
+
+        $result = $connection->query($sql);
+
+
+        if($result->num_rows > 0)
+            {
+                $bike = $result->fetch_assoc();
+            }
+        else
+            {
+                echo "Bike Not Found";
+                exit;
             }
     }
 
