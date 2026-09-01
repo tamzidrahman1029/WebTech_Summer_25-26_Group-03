@@ -50,10 +50,9 @@ class db
 
     function CheckBike($connection, $tablename, $bike_name)
     {
-        $sql = "SELECT * FROM ".$tablename. "WHERE bike_name = '".$bike_name."'";
-
+        $sql = "SELECT * FROM ".$tablename." WHERE bike_name = '".$bike_name."'";
+        
         $result = $connection->query($sql);
-
         return $result;
     }
 }

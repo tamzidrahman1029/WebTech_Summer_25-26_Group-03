@@ -8,6 +8,8 @@ include "../Controller/SellerBikeController.php"
         <title> Sell Bike </title>
         <link rel="stylesheet" href="../Style.css">
 
+        <script src="../JS/CheckBike.js"></script>
+
         <script>
 
             function collect_data()
@@ -34,7 +36,7 @@ include "../Controller/SellerBikeController.php"
 
                 if(name.length == 0)
                 {
-                    message += "Bike Name is required\n";
+                    message += "Bike Name is required";
 
                     valid = false;
                 }
@@ -42,7 +44,7 @@ include "../Controller/SellerBikeController.php"
 
                 if(brand.length == 0)
                 {
-                    message += "Brand is required\n";
+                    message += "Brand is required";
 
                     valid = false;
                 }
@@ -50,7 +52,7 @@ include "../Controller/SellerBikeController.php"
 
                 if(model.length == 0)
                 {
-                    message += "Model is required\n";
+                    message += "Model is required";
 
                     valid = false;
                 }
@@ -58,7 +60,7 @@ include "../Controller/SellerBikeController.php"
 
                 if(price.length == 0 || Number(price) <= 0)
                 {
-                    message += "Enter a valid Price\n";
+                    message += "Enter a valid Price";
 
                     valid = false;
                 }
@@ -66,7 +68,7 @@ include "../Controller/SellerBikeController.php"
 
                 if(quantity.length == 0 || Number(quantity) <= 0)
                 {
-                    message += "Enter a valid Quantity\n";
+                    message += "Enter a valid Quantity";
 
                     valid = false;
                 }
@@ -74,7 +76,7 @@ include "../Controller/SellerBikeController.php"
 
                 if(description.length == 0)
                 {
-                    message += "Description is required\n";
+                    message += "Description is required";
 
                     valid = false;
                 }
@@ -82,7 +84,7 @@ include "../Controller/SellerBikeController.php"
 
                 if(image.length == 0)
                 {
-                    message += "Please select a Bike Image\n";
+                    message += "Please select a Bike Image";
 
                     valid = false;
                 }
