@@ -110,7 +110,10 @@ include "../Controller/SellerBikeController.php"
             <table>
                 <tr>
                     <td><label for="bike_name"> Bike Name: </label></td>
-                    <td><input type="text" id="bike_name" name="bike_name"></td>
+                    <td>
+                        <input type="text" id="bike_name" name="bike_name" onkeyup="CheckBike()">
+                        <span id="bikeresponse"></span>
+                    </td>
                 </tr>
 
                 <tr>

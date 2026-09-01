@@ -25,7 +25,6 @@ $result = $connection->query($sql);
 
         <link rel="stylesheet" href="style.css">
 
-        <script src="../JS/SearchBike.js"></script>
 
     </head>
 
@@ -33,7 +32,6 @@ $result = $connection->query($sql);
     <body>
 
         <h1> Selling Products </h1>
-
 
 
         <table border="1">

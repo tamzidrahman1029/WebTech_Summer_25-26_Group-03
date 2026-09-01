@@ -1,11 +1,10 @@
-function SearchBike()
+function CheckBike()
 {
-    let search = document.getElementById("search").value.trim();
+    let bike_name = document.getElementById("bike_name").value.trim();
 
-    let response = document.getElementById("productTable");
+    let response = document.getElementById("bikeresponse");
 
     let xhttp = new XMLHttpRequest();
-
 
     xhttp.onreadystatechange = function()
     {
@@ -15,17 +14,13 @@ function SearchBike()
         }
         else
         {
-            document.getElementById("productTable").innerHTML = this.status;
+            document.getElementById("bikeresponse").innerHTML = this.status;
         }
     }
 
+    xhttp.open("POST", "../Controller/CheckBike.php", true);
 
-    xhttp.open("POST", "../Controller/SearchBikeController.php", true);
+    xhttp.setRequestHeader("content-type", "application/x-www-form-urlencoded");
 
-
-    xhttp.setRequestHeader("content-type","application/x-www-form-urlencoded");
-
-
-    xhttp.send("search=" + encodeURIComponent(search));
-
+    xhttp.send("bike_name=" + encodeURIComponent(bike_name));
 }
