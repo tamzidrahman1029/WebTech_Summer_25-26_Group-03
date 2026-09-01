@@ -1,0 +1,239 @@
+/* ==========================
+   GLOBAL DESIGN
+========================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI', Arial, sans-serif;
+}
+
+
+body{
+
+    background:#f3f4f6;
+    color:#333;
+     padding-top:70px;
+
+}
+
+
+
+/* ==========================
+   HEADER
+========================== */
+
+
+.header{
+
+    background:#111827;
+    color:white;
+    height:70px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:0 50px;
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    z-index:1000;
+    box-shadow:0 3px 10px rgba(0,0,0,0.2);
+
+}
+
+
+
+.logo{
+
+    font-size:28px;
+    font-weight:bold;
+
+}
+
+
+
+.nav a{
+
+    color:white;
+    text-decoration:none;
+    margin-left:25px;
+    font-size:16px;
+
+}
+
+
+
+.nav a:hover{
+
+    color:#38bdf8;
+
+}
+
+
+
+/* ==========================
+   CONTAINER
+========================== */
+
+
+.container{
+
+    width:90%;
+    margin:40px auto;
+
+}
+
+
+
+/* ==========================
+   CARD
+========================== */
+
+
+.card{
+
+    background:white;
+    padding:25px;
+    border-radius:15px;
+    box-shadow:0 5px 20px rgba(0,0,0,0.1);
+
+}
+
+
+
+/* ==========================
+   DASHBOARD CARDS
+========================== */
+
+
+.dashboard{
+
+    display:grid;
+    grid-template-columns:
+    repeat(auto-fit,minmax(250px,1fr));
+
+    gap:25px;
+
+}
+
+
+
+.dashboard-card{
+
+    background:white;
+    padding:30px;
+    border-radius:15px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.1);
+    text-align:center;
+
+}
+
+
+
+.dashboard-card h2{
+
+    color:#2563eb;
+
+}
+
+
+
+/* ==========================
+   BUTTON
+========================== */
+
+
+.btn{
+
+    display:inline-block;
+    background:#2563eb;
+    color:white;
+    padding:10px 20px;
+    border-radius:8px;
+    text-decoration:none;
+    border:none;
+    cursor:pointer;
+
+}
+
+
+
+.btn:hover{
+
+    background:#1d4ed8;
+
+}
+
+
+
+
+/* ==========================
+   TABLE
+========================== */
+
+
+.table-box{
+
+    background:white;
+    padding:20px;
+    border-radius:15px;
+    overflow-x:auto;
+
+}
+
+
+
+table{
+
+    width:100%;
+    border-collapse:collapse;
+
+}
+
+
+
+th{
+
+    background:#111827;
+    color:white;
+    padding:15px;
+
+}
+
+
+
+td{
+
+    padding:12px;
+    border-bottom:1px solid #ddd;
+    text-align:center;
+
+}
+
+
+
+tr:hover{
+
+    background:#f1f5f9;
+
+}
+
+
+
+
+/* ==========================
+   FOOTER
+========================== */
+
+
+.footer{
+
+    margin-top:50px;
+    background:#111827;
+    color:white;
+    padding:25px;
+    text-align:center;
+
+}
