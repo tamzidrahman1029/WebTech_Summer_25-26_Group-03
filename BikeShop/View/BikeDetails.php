@@ -1,82 +1,547 @@
 <?php
+
 session_start();
+
+
+if (!isset($_SESSION["logged_In"]) ||
+    $_SESSION["role"] != "customer")
+{
+    header("Location: loginpage.php");
+    exit;
+}
+
+
 include "../Model/db.php";
 
-$database = new db();
-$connection = $database->connection();
 
-$bike_id = (int)($_GET["id"] ?? 0);
-$bike = $database->getBikeById($connection, $bike_id);
 
-$cart_message = $_SESSION["cart_message"] ?? "";
-unset($_SESSION["cart_message"]);
+// CHECK BIKE ID
+
+if(!isset($_GET["id"]))
+{
+    echo "Bike not found";
+    exit;
+}
+
+
+
+$bike_id = $_GET["id"];
+
+
+
+
+// GET BIKE DETAILS
+
+
+$sql = "SELECT 
+
+        bikes.*,
+
+        users.username AS seller
+
+
+        FROM bikes
+
+
+        INNER JOIN users
+
+
+        ON bikes.seller_id = users.id
+
+
+        WHERE bikes.id=?";
+
+
+
+
+$stmt = $conn->prepare($sql);
+
+
+
+$stmt->bind_param(
+    "i",
+    $bike_id
+);
+
+
+
+$stmt->execute();
+
+
+
+$result = $stmt->get_result();
+
+
+
+if($result->num_rows == 0)
+{
+    echo "Bike not found";
+    exit;
+}
+
+
+
+$bike = $result->fetch_assoc();
+
+
 
 ?>
+
+
+
 <!DOCTYPE html>
+
 <html>
+
+
 <head>
-    <title><?php echo $bike ? htmlspecialchars($bike['bike_name']) : 'Bike Not Found'; ?> - Bike Shop</title>
-    <link rel="stylesheet" href="customer-style.css">
+
+
+<title>
+Bike Details
+</title>
+
+
+<link rel="stylesheet" href="../Assets/css/style.css">
+
+
+
+<style>
+
+
+.product-container{
+
+
+display:flex;
+
+gap:40px;
+
+background:white;
+
+padding:35px;
+
+border-radius:20px;
+
+box-shadow:0 5px 20px rgba(0,0,0,0.1);
+
+
+}
+
+
+
+.product-image{
+
+
+width:45%;
+
+
+}
+
+
+
+.product-image img{
+
+
+width:100%;
+
+height:400px;
+
+object-fit:cover;
+
+border-radius:15px;
+
+
+}
+
+
+
+
+.product-info{
+
+
+width:55%;
+
+
+}
+
+
+
+.product-info h1{
+
+
+font-size:35px;
+
+margin-bottom:20px;
+
+
+}
+
+
+
+.price{
+
+
+font-size:28px;
+
+font-weight:bold;
+
+color:#16a34a;
+
+margin:20px 0;
+
+
+}
+
+
+
+.info{
+
+
+font-size:18px;
+
+line-height:2;
+
+
+}
+
+
+
+.quantity-box{
+
+
+margin-top:25px;
+
+
+}
+
+
+
+.quantity-box input{
+
+
+width:80px;
+
+padding:10px;
+
+font-size:16px;
+
+border-radius:8px;
+
+border:1px solid #ccc;
+
+
+}
+
+
+
+.cart-btn{
+
+
+margin-top:20px;
+
+background:#2563eb;
+
+color:white;
+
+padding:12px 25px;
+
+border:none;
+
+border-radius:8px;
+
+cursor:pointer;
+
+font-size:16px;
+
+
+}
+
+
+
+.cart-btn:hover{
+
+
+background:#1d4ed8;
+
+
+}
+
+
+
+</style>
+
+
+
 </head>
+
+
+
 <body>
 
-    <?php include "navbar.php"; ?>
 
-    <main>
-        <div class="page-container">
 
-            <?php if (!$bike): ?>
 
-                <div class="empty-state">Bike not found. <a href="BrowseBikes.php">Back to Browse Bikes</a></div>
+<header class="header">
 
-            <?php else: ?>
 
-                <?php if (!empty($cart_message)): ?>
-                    <div class="message success" style="max-width:100%;"><?php echo htmlspecialchars($cart_message); ?></div>
-                <?php endif; ?>
+<div class="logo">
 
-                <div class="bike-details">
+🚲 BikeZone
 
-                    <img src="<?php echo htmlspecialchars($bike['bike_image']); ?>" alt="<?php echo htmlspecialchars($bike['bike_name']); ?>">
+</div>
 
-                    <div class="bike-info">
-                        <h1><?php echo htmlspecialchars($bike['bike_name']); ?></h1>
-                        <div class="bike-meta">Brand: <?php echo htmlspecialchars($bike['brand']); ?></div>
-                        <div class="bike-meta">Model: <?php echo htmlspecialchars($bike['model']); ?></div>
-                        <div class="bike-price"><?php echo number_format($bike['price'], 2); ?></div>
 
-                        <p><?php echo nl2br(htmlspecialchars($bike['description'])); ?></p>
 
-                        <?php if ($bike['quantity'] <= 0): ?>
-                            <p class="stock-out">Out of stock</p>
-                        <?php else: ?>
+<div class="nav">
 
-                            <?php if ($bike['quantity'] <= 2): ?>
-                                <p class="stock-low">Only <?php echo $bike['quantity']; ?> left in stock</p>
-                            <?php endif; ?>
 
-                            <?php if (isset($_SESSION["customer_id"])): ?>
-                                <form class="qty-form" method="post" action="../Controller/CartController.php">
-                                    <input type="hidden" name="action" value="add">
-                                    <input type="hidden" name="bike_id" value="<?php echo $bike['id']; ?>">
-                                    <label for="quantity">Qty:</label>
-                                    <input type="number" id="quantity" name="quantity" value="1" min="1" max="<?php echo $bike['quantity']; ?>">
-                                    <button type="submit" class="btn">Add to Cart</button>
-                                </form>
-                            <?php else: ?>
-                                <p><a href="Login.php" class="btn">Login to Add to Cart</a></p>
-                            <?php endif; ?>
+<a href="CustomerDashboard.php">
 
-                        <?php endif; ?>
+Home
 
-                    </div>
+</a>
 
-                </div>
 
-            <?php endif; ?>
 
-        </div>
-    </main>
+<a href="BuyingCart.php">
+
+My Cart
+
+</a>
+
+
+
+<a href="logout.php">
+
+Logout
+
+</a>
+
+
+</div>
+
+
+
+</header>
+
+
+
+
+
+
+
+<div class="container">
+
+
+
+<div class="product-container">
+
+
+
+
+
+<div class="product-image">
+
+
+<img src="<?php echo htmlspecialchars($bike["image"]); ?>">
+
+
+</div>
+
+
+
+
+
+
+<div class="product-info">
+
+
+
+<h1>
+
+<?php echo htmlspecialchars($bike["name"]); ?>
+
+</h1>
+
+
+
+
+<div class="price">
+
+৳
+
+<?php echo number_format($bike["price"]); ?>
+
+</div>
+
+
+
+
+
+<div class="info">
+
+
+<p>
+
+<b>Brand:</b>
+
+<?php echo htmlspecialchars($bike["brand"]); ?>
+
+</p>
+
+
+
+<p>
+
+<b>Model:</b>
+
+<?php echo htmlspecialchars($bike["model"]); ?>
+
+</p>
+
+
+
+<p>
+
+<b>Available Quantity:</b>
+
+<?php echo $bike["quantity"]; ?>
+
+</p>
+
+
+
+<p>
+
+<b>Seller:</b>
+
+<?php echo htmlspecialchars($bike["seller"]); ?>
+
+</p>
+
+
+
+<p>
+
+<b>Description:</b>
+
+<?php echo htmlspecialchars($bike["description"]); ?>
+
+</p>
+
+
+
+</div>
+
+
+
+
+
+<form method="POST"
+
+action="../Controller/addToCart.php">
+
+
+
+<input type="hidden"
+
+name="bike_id"
+
+value="<?php echo $bike["id"]; ?>">
+
+
+
+
+
+<div class="quantity-box">
+
+
+<label>
+
+Select Quantity:
+
+</label>
+
+
+
+<br>
+
+
+
+<input type="number"
+
+name="quantity"
+
+value="1"
+
+min="1"
+
+max="<?php echo $bike["quantity"]; ?>">
+
+
+
+</div>
+
+
+
+
+
+
+<input class="cart-btn"
+
+type="submit"
+
+value="Add To Buying Cart">
+
+
+
+</form>
+
+
+
+<br>
+
+
+
+<a class="btn"
+
+href="CustomerDashboard.php">
+
+
+Back To Bikes
+
+
+</a>
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+
+
+<footer class="footer">
+
+
+© 2026 BikeZone | Customer Panel
+
+
+</footer>
+
+
 
 </body>
+
+
 </html>
